@@ -684,6 +684,11 @@ body {
   margin-top: 20px;
 }
 
+.hero-buttons a {
+  display: flex;
+  width: fit-content;
+}
+
 .btn {
   padding: 14px 38px;
   border-radius: 40px;
