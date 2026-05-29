@@ -686,7 +686,7 @@ body {
 
 .hero-buttons a {
   display: flex;
-  width: fit-content;
+  flex-direction: column;
 }
 
 .btn {
@@ -3400,6 +3400,10 @@ body {
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+  }
+
+  .hero-buttons a {
+    width: 100%;
   }
 
   .btn {
