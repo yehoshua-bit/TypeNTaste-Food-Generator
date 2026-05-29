@@ -257,7 +257,7 @@ body {
   outline: none;
   background: none;
   font-size: 15px;
-  color: var(--card-bg);
+  color: var(--nav-bg);
 }
 
 .search-box input::placeholder {
@@ -2053,7 +2053,7 @@ body {
   font-size: 22px;
   margin-bottom: 20px;
   color: var(--honey);
-  font-family: "Playfair Display", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .footer-column ul {
@@ -3279,16 +3279,17 @@ body {
   /* Recipe modal */
   .recipe-modal {
     padding: 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     align-items: flex-start;
   }
 
   .recipe-modal-content {
-    max-height: 95vh;
+    max-height: calc(90vh - env(safe-area-inset-bottom, 0px));
     border-radius: 18px;
   }
 
   .recipe-modal-content img {
-    height: 220px;
+    height: 200px;
   }
 
   .modal-body {
@@ -3482,18 +3483,21 @@ body {
   /* Recipe modal */
   .recipe-modal {
     padding: 8px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   }
 
   .recipe-modal-content {
+    max-height: calc(88vh - env(safe-area-inset-bottom, 0px));
     border-radius: 14px;
   }
 
   .recipe-modal-content img {
-    height: 180px;
+    height: 160px;
   }
 
   .modal-body {
-    padding: 18px 16px;
+    padding: 16px 14px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   }
 
   .modal-body h1 {
@@ -3566,7 +3570,7 @@ body {
     outline: none;
     background: none;
     font-size: 13px;
-    color: var(--card-bg);
+    color: var(--nav-bg);
   }
 
   .mobile-search-box input::placeholder {
@@ -3814,11 +3818,12 @@ body {
 
   /* Recipe modal */
   .recipe-modal-content img {
-    height: 150px;
+    height: 130px;
   }
 
   .modal-body {
-    padding: 14px 13px;
+    padding: 12px 11px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   }
 
   .modal-body h1 {
@@ -3972,14 +3977,20 @@ body {
   /* Recipe modal */
   .recipe-modal {
     padding: 6px;
+    padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .recipe-modal-content {
+    max-height: calc(86vh - env(safe-area-inset-bottom, 0px));
   }
 
   .recipe-modal-content img {
-    height: 120px;
+    height: 110px;
   }
 
   .modal-body {
-    padding: 12px 10px;
+    padding: 10px 9px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
   }
 
   .modal-body h1 {
