@@ -35,10 +35,23 @@ overlay.addEventListener("click", () => {
 });
 
 // SEARCH & VOICE (Recipe Cards)
+function getActiveSearchInput() {
+    const mobile = document.getElementById("mobileSearchInput");
+    const desktop = document.getElementById("searchInput");
+    // mobile input is visible when its offsetParent is not null
+    if (mobile && mobile.offsetParent !== null) return mobile;
+    return desktop;
+}
+
 function filterCards() {
-    const input = document.getElementById("searchInput");
+    const input = getActiveSearchInput();
     if (!input) return;
     const term = input.value.toLowerCase();
+    // Keep both inputs in sync so switching screen size doesn't clear the term
+    const other = input.id === "mobileSearchInput"
+        ? document.getElementById("searchInput")
+        : document.getElementById("mobileSearchInput");
+    if (other) other.value = input.value;
     document.querySelectorAll(".recipe-card").forEach((card) => {
         const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
         card.style.display = title.includes(term) ? "" : "none";
@@ -48,8 +61,9 @@ function triggerSearch() {
     filterCards();
 }
 
-function startVoice() {
-    const micBtn = document.getElementById("micBtn");
+function startVoice(btnEl) {
+    // btnEl is passed via onclick="startVoice(this)" so mobile/desktop both work
+    const micBtn = btnEl || document.getElementById("micBtn");
     if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
         alert("Voice search is not supported in this browser. Try Chrome!");
         return;
@@ -61,7 +75,12 @@ function startVoice() {
     micBtn.classList.add("listening");
     rec.start();
     rec.onresult = (e) => {
-        document.getElementById("searchInput").value = e.results[0][0].transcript;
+        const transcript = e.results[0][0].transcript;
+        // Write into both inputs so either is ready when filterCards runs
+        const desktopInput = document.getElementById("searchInput");
+        const mobileInput = document.getElementById("mobileSearchInput");
+        if (desktopInput) desktopInput.value = transcript;
+        if (mobileInput) mobileInput.value = transcript;
         filterCards();
         micBtn.classList.remove("listening");
     };
