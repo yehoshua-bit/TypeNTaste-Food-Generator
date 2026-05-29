@@ -605,7 +605,7 @@ body {
   gap: 50px;
   background:
     linear-gradient(rgba(248, 248, 244, 0.35), rgba(248, 248, 244, 0.45)),
-    url("https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?w=3840&q=95");
+    url("../TNTpictures/TNTbg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
