@@ -1,4 +1,4 @@
-/* ---------- CSS Custom Properties (Light Theme) ---------- */
+/* CSS Custom Properties (Light Theme) */
 :root {
   /* Brand palette */
   --forest-deep: #1a2f2a;
@@ -3280,7 +3280,7 @@ body {
   .recipe-modal {
     padding: 12px;
     padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    align-items: flex-start;
+    align-items: center;
   }
 
   .recipe-modal-content {
