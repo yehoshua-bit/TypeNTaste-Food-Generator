@@ -27,7 +27,7 @@
       </button>
       <input type="text" id="mobileSearchInput" placeholder="Search..." oninput="filterCards()"
         aria-label="Search saved recipes" />
-      <button class="mic-btn" id="mobileMicBtn" onclick="startVoice()" aria-label="Voice search">
+      <button class="mic-btn" id="mobileMicBtn" onclick="startVoice(this)" aria-label="Voice search">
         <i class="fa-solid fa-microphone"></i>
       </button>
     </div>
@@ -37,7 +37,7 @@
       <button class="search-btn" onclick="triggerSearch()">
         <i class="fa-solid fa-magnifying-glass"></i></button><input type="text" id="searchInput"
         placeholder="Search saved recipes..." oninput="filterCards()" /><button class="mic-btn" id="micBtn"
-        onclick="startVoice()">
+        onclick="startVoice(this)">
         <i class="fa-solid fa-microphone"></i>
       </button>
     </div>
