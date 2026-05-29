@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Finder – TypeNTaste</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../TNTcss/styles.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <!-- LOGO — left anchor -->
+    <div class="logo-wrap">
+      <a href="../index.html" style="display: flex; align-items: center; text-decoration: none"><img
+          src="../TNTpictures/TNTLogo.png" alt="TypeNTaste-AI Food Generator" class="nav-logo-full" /></a>
+    </div>
+
+    <!-- MOBILE SEARCH BOX -->
+    <div class="mobile-search-box">
+      <button class="search-btn" onclick="triggerSearch()" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <input type="text" id="mobileSearchInput" placeholder="Search..." oninput="filterCards()"
+        aria-label="Search recipes" />
+      <button class="mic-btn" id="mobileMicBtn" onclick="startVoice()" aria-label="Voice search">
+        <i class="fa-solid fa-microphone"></i>
+      </button>
+    </div>
+
+    <!-- DESKTOP SEARCH BOX -->
+    <div class="search-box">
+      <button class="search-btn" onclick="triggerSearch()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <input type="text" id="searchInput" placeholder="Search recipes..." oninput="filterCards()" /><button
+        class="mic-btn" id="micBtn" onclick="startVoice()">
+        <i class="fa-solid fa-microphone"></i>
+      </button>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">HOME</a>
+      <a href="../TNThtml/TNTRecipeFinder.html" class="active">RECIPE FINDER</a>
+      <a href="../TNThtml/CookList.html">COOK LIST</a>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="../index.html#contact">CONTACT</a>
+      <a href="../index.html#review">REVIEW</a>
+    </div>
+    <div class="nav-right">
+      <div class="menu-icon" id="menuToggle">☰</div>
+
+      <!-- Desktop profile (with dropdown) -->
+      <div class="profile-container">
+        <button id="profileBtn" class="profile-btn">
+          <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+        </button>
+        <div id="profileDropdown" class="profile-dropdown">
+          <div class="profile-header">
+            <div class="profile-image-wrapper">
+              <img id="dropdownProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                alt="Profile" />
+              <label for="uploadProfileImage" class="camera-btn"><i class="fa-solid fa-camera"></i></label>
+              <input type="file" id="uploadProfileImage" accept="image/*" hidden />
+            </div>
+            <div>
+              <h4 id="profileName">Guest User</h4>
+              <p id="profileEmail">No account yet</p>
+            </div>
+          </div>
+          <hr />
+          <a class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Dark Mode</a>
+          <a href="../TNThtml/CookList.html" id="favoritesBtn">Favorites</a>
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+    </div>
+    <div class="sidebar-links">
+      <a href="../index.html">HOME</a>
+      <a href="../TNThtml/TNTRecipeFinder.html">RECIPE FINDER</a>
+      <a href="../TNThtml/CookList.html">COOK LIST</a>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="../index.html#contact">CONTACT</a>
+      <a href="../index.html#review">REVIEW</a>
+    </div>
+    <div class="sidebar-profile">
+      <div class="profile-header">
+        <div class="profile-image-wrapper">
+          <img id="sidebarProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            alt="Profile" /><label for="uploadProfileImageSidebar" class="camera-btn"><i
+              class="fa-solid fa-camera"></i></label><input type="file" id="uploadProfileImageSidebar" accept="image/*"
+            hidden />
+        </div>
+        <div>
+          <h4 id="sidebarProfileName">Guest User</h4>
+          <p id="sidebarProfileEmail">No account yet</p>
+        </div>
+      </div>
+      <hr />
+      <a class="theme-toggle" onclick="toggleTheme()" id="sidebarThemeBtn">Dark Mode</a>
+      <a href="../TNThtml/CookList.html" id="sidebarFavoritesBtn">Favorites</a>
+      <a href="#" id="sidebarLogoutBtn">Logout</a>
+    </div>
+  </div>
+
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <section class="recipe-section" id="recipe-section">
+    <div class="ingredients-panel">
+      <h1>Your Ingredients</h1>
+      <p class="ingredients-description">
+        Type each ingredient and press Add or Enter. Then click "Generate
+        Recipes".
+      </p>
+      <div class="ingredient-input-container">
+        <input type="text" id="ingredientInput" placeholder="Egg, Chicken, Milk, Salt, etc." /><button
+          class="add-ingredient-btn" onclick="
+              addIngredient(document.getElementById('ingredientInput').value)
+            ">
+          +
+        </button>
+      </div>
+      <div class="ingredients-display" id="ingredientsDisplay">
+        <span style="color: #aaa; font-size: 13px">Your ingredients will appear here...</span>
+      </div>
+
+      <!--Quick Add Ingredients-->
+      <div class="quick-add-section">
+        <p>Quick add common ingredients</p>
+        <div class="ingredient-tags" id="quickTags">
+          <button>Eggs</button>
+          <button>Rice</button>
+          <button>Garlic</button>
+          <button>Onion</button>
+          <button>Tomato</button>
+          <button>Chicken</button>
+          <button>Potato</button>
+          <button>Pork</button>
+          <button>Oil</button>
+          <button>Salt</button>
+          <button>Fish</button>
+          <button>Vinegar</button>
+          <button>Soy Sauce</button>
+          <button>Pepper</button>
+        </div>
+      </div>
+
+      <!--Generate and Clear Buttons-->
+      <button class="generate-recipes-btn" onclick="generateRecipes()">
+        Generate Recipes
+      </button>
+      <button class="clear-ingredients-btn" onclick="clearIngredients()">
+        Clear All Ingredients
+      </button>
+    </div>
+
+    <!--Suggested Recipes-->
+    <div class="recipes-panel">
+      <div class="recipes-top">
+        <h1>Suggested Recipes</h1>
+        <div class="recipes-found" id="recipeCount">Loading...</div>
+      </div>
+      <div class="recipes-grid" id="recipesGrid"></div>
+    </div>
+  </section>
+
+  <!--Recipe Modal-->
+  <div class="recipe-modal" id="recipeModal">
+    <div class="recipe-modal-content">
+      <span class="close-modal" id="closeModal">&times;</span><img id="modalImage" src="" alt="" />
+      <div class="modal-body">
+        <h1 id="modalTitle"></h1>
+        <div class="recipe-meta">
+          <span id="modalTime"></span><span id="modalDifficulty"></span><span id="modalRating"></span>
+        </div>
+        <h2>Ingredients</h2>
+        <ul id="modalIngredients"></ul>
+        <h2>Step-by-Step Cooking</h2>
+        <ol id="modalSteps"></ol>
+
+        <!--Print Recipe Button-->
+        <button class="print-btn" onclick="printRecipe()">
+          Print Recipe
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--External Scripts-->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../TNTjs/type.js"></script>
+</body>
+
+</html>

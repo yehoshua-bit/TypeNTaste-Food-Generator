@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeNTaste</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="TNTcss/styles.css" />
+  <link rel="stylesheet" href="TNTcss/top5tntfood.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo-wrap">
+      <a href="#home" style="display: flex; align-items: center; text-decoration: none">
+        <img src="TNTpictures/TNTLogo.png" id="TNTLogo" alt="TypeNTaste- Food Generator" class="nav-logo-full" />
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="active">HOME</a>
+      <a href="TNThtml/TNTRecipeFinder.html">RECIPE FINDER</a>
+      <a href="TNThtml/CookList.html">COOK LIST</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+      <a href="#review">REVIEW</a>
+    </div>
+
+    <div class="nav-right">
+      <div class="menu-icon" id="menuToggle">☰</div>
+
+      <div class="profile-container">
+        <button id="profileBtn" class="profile-btn">
+          <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+        </button>
+        <div id="profileDropdown" class="profile-dropdown">
+          <div class="profile-header">
+            <div class="profile-image-wrapper">
+              <img id="dropdownProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                alt="Profile" />
+              <label for="uploadProfileImage" class="camera-btn"><i class="fa-solid fa-camera"></i></label>
+              <input type="file" id="uploadProfileImage" accept="image/*" hidden />
+            </div>
+            <div>
+              <h4 id="profileName">Guest User</h4>
+              <p id="profileEmail">No account yet</p>
+            </div>
+          </div>
+          <hr />
+          <a class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Dark Mode</a>
+          <a href="TNThtml/CookList.html" id="favoritesBtn">Favorites</a>
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+    </div>
+    <div class="sidebar-links">
+      <a href="#home">HOME</a>
+      <a href="TNThtml/TNTRecipeFinder.html">RECIPE FINDER</a>
+      <a href="TNThtml/CookList.html">COOK LIST</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+      <a href="#review">REVIEW</a>
+    </div>
+    <div class="sidebar-profile">
+      <div class="profile-header">
+        <div class="profile-image-wrapper">
+          <img id="sidebarProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+          <label for="uploadProfileImageSidebar" class="camera-btn"><i class="fa-solid fa-camera"></i></label>
+          <input type="file" id="uploadProfileImageSidebar" accept="image/*" hidden />
+        </div>
+        <div>
+          <h4 id="sidebarProfileName">Guest User</h4>
+          <p id="sidebarProfileEmail">No account yet</p>
+        </div>
+      </div>
+      <hr />
+      <a class="theme-toggle" onclick="toggleTheme()" id="sidebarThemeBtn">Dark Mode</a>
+      <a href="TNThtml/CookList.html" id="sidebarFavoritesBtn">Favorites</a>
+      <a href="#" id="sidebarLogoutBtn">Logout</a>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <h1 class="hero-title">
+        <span class="hero-black">Type It,</span>
+        <span class="hero-yellow">Taste It,</span>
+        <span class="hero-orange">Love Every Bite!</span>
+      </h1>
+      <p class="hero-sub">
+        Smart cooking powered by API's — just type the ingredients you have
+        and discover amazing recipes. Zero food waste, maximum flavor.
+      </p>
+      <div class="hero-buttons">
+        <a href="TNThtml/TNTRecipeFinder.html" style="text-decoration: none;">
+          <button class="btn btn-login" id="exploreBtn">EXPLORE RECIPES</button>
+        </a>
+        <button class="btn btn-create" id="openRegister">
+          Create Account
+        </button>
+      </div>
+    </div>
+
+
+    <div class="register-popup" id="registerPopup">
+      <div class="register-box">
+        <span class="close-popup" id="closePopup">&times;</span>
+        <div class="auth-container">
+          <div class="left-panel">
+            <h1>TypeNTaste <br /><span>Food Generator</span></h1>
+            <p>
+              Create your account and start generating smart API's-powered
+              recipes instantly using ingredients you already have.
+            </p>
+            <div class="feature">
+              <i class="fa-solid fa-utensils"></i><span>Food Generator</span>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-heart"></i><span>Save Favorite Meals</span>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-mobile-screen"></i><span>Responsive Design</span>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-bolt"></i><span>Fast Experience</span>
+            </div>
+          </div>
+          <div class="right-panel">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+              <div class="input-group">
+                <input type="text" id="fullName" placeholder="Full Name" required /><span class="input-icon"><i
+                    class="fa-solid fa-user"></i></span>
+              </div>
+              <div class="input-group">
+                <input type="email" id="email" placeholder="Email Address" required /><span class="input-icon"><i
+                    class="fa-solid fa-envelope"></i></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required /><span
+                  class="input-icon toggle-password"><i class="fa-solid fa-lock"></i></span>
+              </div>
+              <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required /><span
+                  class="input-icon toggle-password"><i class="fa-solid fa-lock"></i></span>
+              </div>
+              <button type="submit" class="login-btn">CREATE ACCOUNT</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="gallery-section">
+    <div class="section-pill" style="width: fit-content; margin: 0 auto 15px auto;">Featured Dishes</div>
+    <h1 class="gallery-title">Top 5 Best TypeNTaste Dishes</h1>
+
+    <div class="gallery-container">
+
+      <div class="gallery-card active">
+        <div class="card-content">
+          <h3>Mediterranean Salad</h3>
+          <p>A fresh, bright, and healthy dish packed with the traditional flavors of coastal Europe. It is known for
+            being incredibly crisp, light, and naturally flavorful without relying on heavy or creamy dressings.
+          </p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-content">
+          <h3>Hawaiian Chicken Pizza</h3>
+          <p>A delicious, sweet-and-savory upgrade to the classic Hawaiian pizza. It swaps out the traditional ham for
+            tender, seasoned chicken, creating a richer flavor profile that balances perfectly with the juicy sweetness
+            of pineapple.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-content">
+          <h3>Banana Pancakes</h3>
+          <p>Fluffy pancakes made with mashed bananas, giving them a soft, moist texture and a natural, sweet flavor.
+            They are often enhanced with cinnamon or vanilla and are a popular choice for a cozy breakfast or brunch.
+          </p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-content">
+          <h3>Karışık Izgara</h3>
+          <p>A mixed grill platter featuring a variety of grilled meats, such as lamb chops, Adana kebab, chicken
+            shish, and beef kofta. Typically served hot off the grill with fresh vegetables, rice, and Turkish
+            flatbread.
+          </p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="card-content">
+          <h3>French Toast</h3>
+          <p>Thick slices of bread dipped in a rich custard mixture of eggs, milk, sugar, and vanilla, then pan-fried
+            to a golden brown.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="section-pill">Why TypeNTaste?</div>
+    <h1 class="subtitle">Smart cooking starts here</h1>
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon">🤖</span>
+        <h3>API's-POWERED SUGGESTIONS</h3>
+        <p>
+          Our system uses API's keys to analyze your ingredients and generate
+          the best matching recipes instantly.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">♻️</span>
+        <h3>ZERO FOOD WASTE</h3>
+        <p>
+          Great for restaurants and canteens — cook exactly what you have. No
+          more throwing away unused ingredients and leftover foods.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h3>INSTANT RESULTS</h3>
+        <p>
+          No need to browse long lists. Get personalized recipe suggestions in
+          real-time based on your available ingredients.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📝</span>
+        <h3>STEP-BY-STEP RECIPES</h3>
+        <p>
+          Every recipe comes with clear, easy-to-follow instructions, exact
+          measurements, and cooking times to ensure perfect results every
+          time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="section-pill" style="width: fit-content">How It Works?</div>
+    <h1 class="subtitle">3 Simple Steps</h1>
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>LIST YOUR INGREDIENTS</h3>
+        <p>
+          Type the ingredients you currently have like raw items, leftovers,
+          anything in your kitchen or pantry.
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>LET THE FINDER THINK</h3>
+        <p>
+          Our recipe finder analyzes your ingredients and matches them against
+          thousands of possible recipe combinations.
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>START COOKING!</h3>
+        <p>
+          Pick a recipe you like and follow the step-by-step instructions and
+          the dish is served.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!--About Us Section-->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="deco-circle-1"></div>
+      <div class="deco-circle-2"></div>
+      <div class="about-box">
+        <div class="about-visual">
+          <img src="https://allgreens.co.uk/wp-content/uploads/2025/09/food-plating-ideas-scaled.jpeg"
+            alt="Food Plating" />
+        </div>
+
+        <!--About Content-->
+        <div class="about-content">
+          <div class="about-tag">About Us</div>
+          <h1 class="about-title">Type<span>N</span>Taste</h1>
+          <p class="about-text">
+            TypeNTaste is a web-based system that helps businesses and individuals reduce food waste by generating smart
+            recipe suggestions based on available ingredients and resources they have.
+          </p>
+          <p class="about-text">
+            This project was built as our first-year requirement in Computer Science, combining our learnings in HTML,
+            CSS, and JavaScript with API technology to solve a real-world problem in the food industry.
+          </p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">API-Powered</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">♻️</div>
+              <div class="stat-label">Eco-Friendly</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">⚡</div>
+              <div class="stat-label">Super Fast</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Developers Section-->
+  <section class="developers-section">
+    <div class="section-pill">The Developers</div>
+    <h1 class="dev-subtitle">TEAM WEBPRENEURS</h1>
+    <div class="developers-container">
+      <div class="developer-card" data-name="Joshua Gallardo" data-role="Project Manager"
+        data-img="TNTpictures/joshua.jpg"
+        data-description="Hi! I am Joshua Gallardo, the Project Manager of TypeNTaste. I managed the project lifecycle,
+         coordinated our development workflow, and worked closely with the team to design a responsive, modern website that maximizes UI and user experience."
+        data-facebook="https://www.facebook.com/share/1Cq68BasU3/"
+        data-instagram="https://www.instagram.com/jeyi_eys?igsh=MTRma2lsODV2ZTF0MA=="
+        data-tiktok="https://www.tiktok.com/@tokwa_14?_r=1&_t=ZS-96UuDTQWtWb">
+        <img src="TNTpictures/joshua.jpg" />
+        <h2>Joshua Gallardo</h2>
+        <span>Project Manager</span>
+        <p>THE ORGANIZER AND LEADER OF THE TEAM. HE KEEPS TRACK OF THE TIMELINE, BUDGET, AND GOALS, MAKING SURE
+          EVERYONE COMMUNICATES WELL AND THE PROJECT GETS FINISHED ON TIME.
+        </p>
+      </div>
+      <div class="developer-card" data-name="Irene Pagaduan" data-role="Front-end Developer"
+        data-img="TNTpictures/irene.jpg"
+        data-description="Hello! I am Irene Pagaduan, a Frontend Developer of TypeNTaste. I focused on the responsive layouts, user-friendly interface, and helped create the interactive sections of the website."
+        data-facebook="https://www.facebook.com/share/1Bd9PVDV8d/"
+        data-instagram="https://www.instagram.com/aerinynx?igsh=ZWFqMWNtYW9vdGZw"
+        data-tiktok="https://www.tiktok.com/@aerinynx?_r=1&_t=ZS-96UjHQwLpWH">
+        <img src="TNTpictures/irene.jpg" />
+        <h2>Irene Pagaduan</h2>
+        <span>Front-end Developer</span>
+        <p>SHE TAKE THE DESIGNER'S IDEAS TO CREATE THE ACTUAL BUTTONS, MENUS, AND LAYOUTS THAT USERS INTERACT WITH.
+        </p>
+      </div>
+      <div class="developer-card" data-name="Jolina Ramon" data-role="UI/UX Designer" data-img="TNTpictures/jo.jpeg"
+        data-description="Hi! I am Jolina Ramon, the UI/UX Designer for TypeNTaste. I designed the visual layout and user
+        journey for the recipe finder system, ensuring the interface is intuitive, seamless, and engaging for our users."
+        data-facebook="https://www.facebook.com/share/1Fqi5RHCDc/"
+        data-instagram="https://www.instagram.com/aejulsz?igsh=MWIwamM0N3diNGxobg=="
+        data-tiktok="https://www.tiktok.com/@majoeon?_r=1&_t=ZS-96S53O5k3Bh">
+        <img src="TNTpictures/jo.jpeg" />
+        <h2>Jolina Ramon</h2>
+        <span>UI/UX Designer</span>
+        <p>
+          SHE HANDLED THE DESIGN PART LIKE MAKING THE BUTTONS LOOK GOOD, CHOOSING THE RIGHT FONTS, AND MAKING
+          SURE THE APP IS EASY, LOGICAL, AND SMOOTH FOR A PERSON TO USE.
+        </p>
+      </div>
+      <div class="developer-card" data-name="Mae Rosillo" data-role="Back-end Developer"
+        data-img="TNTpictures/mae.jpg"
+        data-description="Hello! I am Mae Rosillo, the Back-End Developer of TypeNTaste. 
+        I handled the core functionality and data management of the website, focusing on building a secure, scalable architecture that ensures a seamless experience for our users."
+        data-facebook="https://www.facebook.com/dianamaerei" data-instagram="https://www.instagram.com/io.nayaa">
+        <img src="TNTpictures/mae.jpg" />
+        <h2>Mae Rosillo</h2>
+        <span>Back-end Developer</span>
+        <p>SHE WORK BEHIND THE SCENES TO HANDLE THE DATA, SERVERS, AND SECURITY THAT POWER THE APP, MAKING SURE
+          INFORMATION FLOWS CORRECTLY WHEN YOU LOGIN, SEARCH, OR BUY SOMETHING.
+        </p>
+      </div>
+      <div class="developer-card" data-name="RJ Matullano" data-role="Project Manager" data-img="TNTpictures/rj.jpg"
+        data-description="Hi! I am RJ Matullano, the QA and Testing Specialist for TypeNTaste. I led the quality assurance process, designed and executed comprehensive test plans, and ensured all features met our high standards for performance and reliability before launch."
+        data-facebook=" https://www.facebook.com/share/1UvYMjtc2Z/"
+        data-instagram="https://www.instagram.com/matullanoprince?igsh=MXBjMmxqemFpd2E0eg=="
+        data-tiktok="https://www.tiktok.com/@gentlemankaito?_r=1&_d=secCgYIASAHKAESPgo8iYIjoshiInsZaXixU%2BSLYni7sgQ6jyYjCU%2Bn71CTU%2F55H6%2BK8iE0bt6S2mUwueiu%2FZKdjlxwh9AGeQqVGgA%3D&_svg=1&checksum=1453306006707a1a7864973e8e540aa8b2cec4ec05d3066d269243664274394c&item_author_type=1&reflow_sign_scene=7&rgssign=8.1.dZlH400Wa-CB0BtrbJpIbQ&sec_uid=MS4wLjABAAAASeXFtYJ44IE8ASZvVm-glp8RSx-QU3FecMde8TFsjw1-oNdMO2JON2Y9Gkhw8-iz&sec_user_id=MS4wLjABAAAASeXFtYJ44IE8ASZvVm-glp8RSx-QU3FecMde8TFsjw1-oNdMO2JON2Y9Gkhw8-iz&share_app_id=1180&share_author_id=6922047367752156161&share_link_id=89801454-91d3-4a75-829f-0a46a77e4ce1&share_region=PH&share_scene=1&sharer_language=en&social_share_type=5&source=h5_t&timestamp=1779249787&u_code=dgjk4jif256ik6&ug_btm=b8727%2Cb7360&ugbiz_name=ACCOUNT&user_id=6922047367752156161&utm_campaign=client_share&utm_medium=android&utm_source=copy">
+        <img src="TNTpictures/rj.jpg" />
+        <h2>RJ Matullano</h2>
+        <span>QA and Testing Specialist</span>
+        <p>HE THOROUGHLY TEST THE SYSTEM TO FIND GLITCHES, BROKEN FEATURES, OR CRASHES BEFORE REAL USERS DO, ENSURING
+          THE FINAL PRODUCT WORKS PERFECTLY.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!--Developer Popup-->
+  <div class="developer-popup" id="developerPopup">
+    <div class="popup-content">
+      <span class="close-dev-popup">&times;</span><img id="popupImg" alt="Developer" />
+      <h2 id="popupName"></h2>
+      <h4 id="popupRole"></h4>
+      <p id="popupDescription"></p>
+      <div class="social-icons">
+        <a id="facebookLink" target="_blank"><i class="fa-brands fa-facebook-f"></i></a><a id="instagramLink"
+          target="_blank"><i class="fa-brands fa-instagram"></i></a><a id="tiktokLink" target="_blank"><i
+            class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!--FAQs Section-->
+  <section class="faq-section" id="faqs">
+    <div class="faq-container">
+      <h1 class="faq-title">FAQS</h1>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Are the recipes on TypeNTaste free to access?</h4>
+          <p>
+            Yes, all recipes on TypeNTaste are completely free to browse and
+            view. No subscription or payment is required to explore our recipe
+            collection.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I search for recipes using ingredients I already have?</h4>
+          <p>
+            Yes! Simply type your ingredients into the ingredient input box
+            and click "Generate Recipes." The system will filter recipes that
+            match what you have.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>
+            What if I don't have all the ingredients listed in a recipe?
+          </h4>
+          <p>
+            No problem! TypeNTaste suggests recipes based on what you already
+            have. You can always skip or substitute missing ingredients. The
+            recipe instructions will still guide you, and you can use our
+            "Custom Recipe" feature in the Cook List to modify any dish to fit
+            your pantry.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Contact Section-->
+  <section class="contact-section" id="contact">
+    <div class="contact-left">
+      <h2>CONTACT US</h2>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+        <span>+91-123-456-7890</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+        <span>typentaste@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+        <div class="socials">
+          <button class="social-btn fb">
+            <i class="fa-brands fa-facebook-f"></i></button><button class="social-btn tw">
+            <i class="fa-brands fa-x-twitter"></i></button><button class="social-btn ig">
+            <i class="fa-brands fa-instagram"></i></button><button class="social-btn tk">
+            <i class="fa-brands fa-tiktok"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-form">
+        <input type="text" placeholder="Your Name" /><input type="email" placeholder="Your Email" /><textarea
+          placeholder="Your Message"></textarea><button>Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!--Feedback Section-->
+  <section class="tnt-feedback-section" id="review">
+    <div class="tnt-container">
+      <div class="tnt-section-header">
+        <div class="tnt-badge">
+          <i data-lucide="message-circle"></i> CUSTOMER FEEDBACK
+        </div>
+        <h2 class="tnt-title">COMMUNITY FEEDBACK</h2>
+        <p class="tnt-subtitle">Real reviews from our dearest users</p>
+      </div>
+      <div class="tnt-reviews-grid" id="tntReviewsContainer">
+        <div class="tnt-review-card">
+          <div class="tnt-card-inner-top">
+            <div class="tnt-avatar">
+              <i data-lucide="user"></i>
+            </div>
+            <div class="tnt-user-info">
+              <span class="tnt-name">Lea Talonga</span>
+              <div class="tnt-stars">
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+              </div>
+            </div>
+          </div>
+          <p class="tnt-review-text">
+            TypeNTaste has completely transformed how I cook dinner! The
+            recipe suggestions are spot on, and I love how easy it is to find
+            meals based on what I already have in my pantry.
+          </p>
+        </div>
+        <div class="tnt-review-card">
+          <div class="tnt-card-inner-top">
+            <div class="tnt-avatar">
+              <i data-lucide="user"></i>
+            </div>
+            <div class="tnt-user-info">
+              <span class="tnt-name">Michael Tackson</span>
+              <div class="tnt-stars">
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: none"></i>
+              </div>
+            </div>
+          </div>
+          <p class="tnt-review-text">
+            A fantastic resource for quick weeknight meals. The UI is gorgeous
+            and the instructions are always so clear. Highly recommend to any
+            home cook!
+          </p>
+        </div>
+        <div class="tnt-review-card">
+          <div class="tnt-card-inner-top">
+            <div class="tnt-avatar">
+              <i data-lucide="user"></i>
+            </div>
+            <div class="tnt-user-info">
+              <span class="tnt-name">Robin Padula</span>
+              <div class="tnt-stars">
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+              </div>
+            </div>
+          </div>
+          <p class="tnt-review-text">
+            I've tried five different recipes so far, and they've all been
+            absolute hits with my family. The beautiful design makes finding
+            dinner ideas incredibly fun.
+          </p>
+        </div>
+        <div class="tnt-review-card">
+          <div class="tnt-card-inner-top">
+            <div class="tnt-avatar">
+              <i data-lucide="user"></i>
+            </div>
+            <div class="tnt-user-info">
+              <span class="tnt-name">Jerome Macata</span>
+              <div class="tnt-stars">
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+                <i data-lucide="star" style="fill: currentColor"></i>
+              </div>
+            </div>
+          </div>
+          <p class="tnt-review-text">
+            The search filters are a lifesaver. I was able to find a
+            gluten-free, dairy-free dessert in seconds. The lemon bars were
+            amazing!
+          </p>
+        </div>
+      </div>
+      <div class="tnt-action-bar">
+        <div class="tnt-action-left">
+          <div class="tnt-action-icon">
+            <i data-lucide="file-edit"></i>
+          </div>
+          <div class="tnt-action-text">
+            <h3>SHARE YOUR EXPERIENCE</h3>
+            <p>We'd love to hear your thoughts about TypeNTaste!</p>
+          </div>
+        </div>
+        <button class="tnt-btn-review" id="tntLeaveReviewBtn">
+          LEAVE A REVIEW <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <div id="tntReviewModal" class="tnt-modal-overlay">
+    <div class="tnt-modal-content">
+      <div class="tnt-modal-header">
+        <h3>Write a Review</h3>
+
+        <button id="tntCloseModalBtn" class="tnt-btn-icon" aria-label="Close modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!--Leave a Review Form-->
+      <form id="tntReviewForm">
+        <div class="tnt-form-group">
+          <label for="tntReviewerName">Name</label>
+          <input type="text" id="tntReviewerName" required placeholder="Your name" />
+        </div>
+        <div class="tnt-form-group">
+          <label>Rating</label>
+
+          <!--Star Rating Input-->
+          <div class="tnt-star-rating-input" id="tntStarRatingInput">
+            <i data-lucide="star" data-value="1"></i>
+            <i data-lucide="star" data-value="2"></i>
+            <i data-lucide="star" data-value="3"></i>
+            <i data-lucide="star" data-value="4"></i>
+            <i data-lucide="star" data-value="5"></i>
+          </div>
+
+          <!--Hidden Review Rating Input-->
+          <input type="hidden" id="tntReviewRating" value="5" />
+        </div>
+        <div class="tnt-form-group">
+          <label for="tntReviewComment">Comment</label>
+          <textarea id="tntReviewComment" required placeholder="What did you think of the recipes?"></textarea>
+        </div>
+        <button type="submit" class="tnt-btn-submit">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!--Footer-->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="TNThtml/TNTRecipeFinder.html">Recipe Finder</a></li>
+          <li><a href="TNThtml/CookList.html">Cook List</a></li>
+          <li><a href="#review">Review</a></li>
+        </ul>
+      </div>
+
+      <!--Contact Links-->
+      <div class="footer-column">
+        <h3>Contact Links</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!--Footer Brand-->
+      <div class="footer-column footer-brand">
+
+        <img src="TNTpictures/TNTLogo.png" alt="TypeNTaste Logo" class="footer-logo" />
+        <h4>Follow Us</h4>
+
+        <!--Social Media Links-->
+        <div class="footer-socials">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!--Footer Bottom-->
+    <div class="footer-bottom">© 2026 TypeNTaste, All rights reserved.</div>
+  </footer>
+
+  <!--External Scripts-->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="TNTjs/tntfeedback.js"></script>
+  <script src="TNTjs/type.js"></script>
+  <script src="TNTjs/top5tntfood.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cook List – TypeNTaste</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="../TNTcss/styles.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <!-- LOGO -->
+    <div class="logo-wrap">
+      <a href="../index.html" style="display: flex; align-items: center; text-decoration: none"><img
+          src="../TNTpictures/TNTLogo.png" alt="TypeNTaste-AI Food Generator" class="nav-logo-full" /></a>
+    </div>
+
+    <!-- MOBILE SEARCH BOX -->
+    <div class="mobile-search-box">
+      <button class="search-btn" onclick="triggerSearch()" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <input type="text" id="mobileSearchInput" placeholder="Search..." oninput="filterCards()"
+        aria-label="Search saved recipes" />
+      <button class="mic-btn" id="mobileMicBtn" onclick="startVoice()" aria-label="Voice search">
+        <i class="fa-solid fa-microphone"></i>
+      </button>
+    </div>
+
+    <!-- DESKTOP SEARCH BOX -->
+    <div class="search-box">
+      <button class="search-btn" onclick="triggerSearch()">
+        <i class="fa-solid fa-magnifying-glass"></i></button><input type="text" id="searchInput"
+        placeholder="Search saved recipes..." oninput="filterCards()" /><button class="mic-btn" id="micBtn"
+        onclick="startVoice()">
+        <i class="fa-solid fa-microphone"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="../index.html">HOME</a>
+      <a href="../TNThtml/TNTRecipeFinder.html">RECIPE FINDER</a>
+      <a href="../TNThtml/CookList.html" class="active">COOK LIST</a>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="../index.html#contact">CONTACT</a>
+      <a href="../index.html#review">REVIEW</a>
+    </div>
+
+    <!-- Desktop Profile Dropdown -->
+    <div class="nav-right">
+      <div class="menu-icon" id="menuToggle">☰</div>
+      <div class="profile-container">
+        <button id="profileBtn" class="profile-btn">
+          <img id="profileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" />
+        </button>
+        <div id="profileDropdown" class="profile-dropdown">
+          <div class="profile-header">
+            <div class="profile-image-wrapper">
+              <img id="dropdownProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                alt="Profile" />
+              <label for="uploadProfileImage" class="camera-btn"><i class="fa-solid fa-camera"></i></label>
+              <input type="file" id="uploadProfileImage" accept="image/*" hidden />
+            </div>
+            <div>
+              <h4 id="profileName">Guest User</h4>
+              <p id="profileEmail">No account yet</p>
+            </div>
+          </div>
+          <hr />
+
+          <!-- Theme Toggle -->
+          <a class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Dark Mode</a>
+
+          <!-- Favorites Button -->
+          <a href="../TNThtml/CookList.html" id="favoritesBtn">Favorites</a>
+
+          <!-- Logout Button -->
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+    </div>
+    <div class="sidebar-links">
+      <a href="../index.html">HOME</a>
+      <a href="../TNThtml/TNTRecipeFinder.html">RECIPE FINDER</a>
+      <a href="../TNThtml/CookList.html">COOK LIST</a>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="../index.html#contact">CONTACT</a>
+      <a href="../index.html#review">REVIEW</a>
+    </div>
+
+    <!-- Sidebar Profile -->
+    <div class="sidebar-profile">
+      <div class="profile-header">
+        <div class="profile-image-wrapper">
+          <img id="sidebarProfileImage" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            alt="Profile" /><label for="uploadProfileImageSidebar" class="camera-btn"><i
+              class="fa-solid fa-camera"></i></label><input type="file" id="uploadProfileImageSidebar" accept="image/*"
+            hidden />
+        </div>
+        <div>
+          <h4 id="sidebarProfileName">Guest User</h4>
+          <p id="sidebarProfileEmail">No account yet</p>
+        </div>
+      </div>
+      <hr />
+      <a class="theme-toggle" onclick="toggleTheme()" id="sidebarThemeBtn">Dark Mode</a>
+      <a href="../TNThtml/CookList.html" id="sidebarFavoritesBtn">Favorites</a>
+      <a href="#" id="sidebarLogoutBtn">Logout</a>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MAIN CONTENT -->
+  <section class="cooklist-section" id="cooklist-section">
+    <div class="ingredients-panel">
+      <h1>Add Recipe</h1>
+      <p class="ingredients-description">
+        Fill in the fields below to add your own custom recipe to your
+        personal Cook List.
+      </p>
+
+      <!-- Add Recipe Form -->
+      <div class="cooklist-form">
+        <input type="text" id="customTitle" placeholder="Recipe Name *" />
+        <select id="customCategory" class="cooklist-select">
+          <option value="Custom">Custom</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Soup">Soup</option>
+          <option value="Salad">Salad</option>
+          <option value="Pasta">Pasta</option>
+          <option value="Grilled">Grilled</option>
+          <option value="Vegan">Vegan</option>
+          <option value="Filipino">Filipino</option>
+        </select>
+
+        <!-- Image URL -->
+        <input type="url" id="customImage" placeholder="Image URL (optional)" />
+
+        <!-- Ingredients -->
+        <textarea id="customIngredients"
+          placeholder="Ingredients — one per line *&#10;e.g. 2 cups rice&#10;1 kg chicken"></textarea>
+
+        <!-- Cooking Steps -->
+        <textarea id="customSteps"
+          placeholder="Cooking Steps — one per line *&#10;e.g. Boil water in a pot.&#10;Add rice and cook for 20 mins."></textarea>
+      </div>
+
+      <!-- Add to Cook List Button -->
+      <button class="generate-recipes-btn" onclick="addCustomRecipe()">
+        Add to Cook List
+      </button>
+
+      <!-- Clear Form Button -->
+      <button class="clear-ingredients-btn" onclick="clearCookForm()">
+        Clear Form
+      </button>
+    </div>
+
+    <!-- Recipes Panel -->
+    <div class="recipes-panel">
+      <div class="recipes-top">
+        <h1>My Cook List</h1>
+        <div class="recipes-found" id="cookListCount">0 Saved Recipes</div>
+      </div>
+      <div class="recipes-grid" id="cookListGrid"></div>
+    </div>
+  </section>
+
+  <!-- Recipe Modal -->
+  <div class="recipe-modal" id="recipeModal">
+    <div class="recipe-modal-content">
+      <span class="close-modal" id="closeModal">&times;</span><img id="modalImage" src="" alt="" />
+      <div class="modal-body">
+        <h1 id="modalTitle"></h1>
+        <div class="recipe-meta">
+          <span id="modalTime"></span><span id="modalDifficulty"></span><span id="modalRating"></span>
+        </div>
+        <h2>Ingredients</h2>
+        <ul id="modalIngredients"></ul>
+        <h2>Step-by-Step Cooking</h2>
+        <ol id="modalSteps"></ol>
+        <button class="print-btn" onclick="printRecipe()">
+          Print Recipe
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--External Scripts-->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../TNTjs/type.js"></script>
+</body>
+
+</html>

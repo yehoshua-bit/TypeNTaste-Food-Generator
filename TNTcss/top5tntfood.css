@@ -1,0 +1,156 @@
+/* INTERACTIVE GALLERY - STYLES EXTENSION */
+.gallery-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.gallery-title {
+    text-align: center;
+    color: var(--text-main);
+    transition: color 0.4s;
+    font-size: 2.5rem;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.gallery-container {
+    display: flex;
+    width: 100%;
+    height: 520px;
+    gap: 16px;
+}
+
+.gallery-card {
+    flex: 0.5;
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+        background-size 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+    z-index: 1;
+}
+
+/* Base Image Allocations - Set to cover by default */
+.gallery-card:nth-child(1) {
+    background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800');
+    background-size: cover;
+}
+
+.gallery-card:nth-child(2) {
+    background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800');
+    background-size: cover;
+}
+
+.gallery-card:nth-child(3) {
+    background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800');
+    background-size: cover;
+}
+
+.gallery-card:nth-child(4) {
+    background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800');
+    background-size: cover;
+}
+
+.gallery-card:nth-child(5) {
+    background-image: url('https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800');
+    background-size: cover;
+}
+
+/* Triggers card expansion and background zoom on hover */
+.gallery-card:hover {
+    flex: 4;
+    background-size: 110%;
+}
+
+/* Reveals text content smoothly when hovered */
+.gallery-card:hover .card-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 35px;
+    left: 35px;
+    right: 35px;
+    color: #ffffff;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.card-content h3 {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    max-width: 85%;
+}
+
+/* Keeps compatibility active if you are still using click toggles via JS */
+.gallery-card.active {
+    flex: 4;
+}
+
+.gallery-card.active .card-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+/* Mobile Responsiveness Viewports */
+@media (max-width: 850px) {
+    .gallery-container {
+        flex-direction: column;
+        height: 750px;
+        gap: 12px;
+    }
+
+    .gallery-card {
+        flex: 1;
+    }
+
+    /* Disables heavy scale-zooming on mobile views to preserve framing */
+    .gallery-card:hover {
+        flex: 3;
+        background-size: cover;
+    }
+
+    .gallery-card.active {
+        flex: 3;
+    }
+
+    .card-content {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
+
+    .card-content h3 {
+        font-size: 1.4rem;
+    }
+}
